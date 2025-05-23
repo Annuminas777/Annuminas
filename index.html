@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Annuminas</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: linear-gradient(160deg, #1c1c1c, #2a2a2a);
+      animation: breathe 10s ease-in-out infinite alternate;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    @keyframes breathe {
+      0% {
+        background: linear-gradient(160deg, #1c1c1c, #2a2a2a);
+      }
+      100% {
+        background: linear-gradient(200deg, #181818, #303030);
+      }
+    }
+
+    .logo {
+      width: 200px;
+      height: auto;
+      background: linear-gradient(135deg, #f8f4e3, #e6dec5);
+      background-size: 300% 300%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: shimmer 6s ease-in-out infinite alternate;
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 0% 50%;
+      }
+      100% {
+        background-position: 100% 50%;
+      }
+    }
+
+    object {
+      width: 160px;
+      height: auto;
+      filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.05));
+    }
+  </style>
+</head>
+<body>
+  <object data="https://raw.githubusercontent.com/Annuminas777/Annuminas/bd10584e381d470a7508bdf52a6ab617f862b5f6/The%20Tower%20of%20the%20West.svg" type="image/svg+xml" class="logo"></object>
+</body>
+</html>
