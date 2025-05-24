@@ -13,36 +13,37 @@
       overflow: hidden;
     }
  
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle at 30% 30%, #2a2a2a, #1a1a1a 60%);
-      animation: ambientFlow 60s ease-in-out infinite;
-      z-index: -1;
-      transform: translate(-25%, -25%);
-    }
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
+  animation: ambientFlow 20s ease-in-out infinite;
+  z-index: -1;
+  transform: translate(-25%, -25%);
+  filter: blur(20px);
+}
 
-    @keyframes ambientFlow {
-      0% {
-        background: radial-gradient(circle at 30% 30%, #2a2a2a, #1a1a1a 60%);
-      }
-      25% {
-        background: radial-gradient(circle at 70% 20%, #2c2c2c, #141414 60%);
-      }
-      50% {
-        background: radial-gradient(circle at 50% 80%, #252525, #111 60%);
-      }
-      75% {
-        background: radial-gradient(circle at 80% 60%, #2e2e2e, #191919 60%);
-      }
-      100% {
-        background: radial-gradient(circle at 30% 30%, #2a2a2a, #1a1a1a 60%);
-      }
-    }
+@keyframes ambientFlow {
+  0% {
+    background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
+  }
+  25% {
+    background: radial-gradient(circle at 60% 30%, #2c2c2c, #000000);
+  }
+  50% {
+    background: radial-gradient(circle at 50% 70%, #3a3a3a, #0a0a0a);
+  }
+  75% {
+    background: radial-gradient(circle at 80% 40%, #1a1a1a, #202020);
+  }
+  100% {
+    background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
+  }
+}
 
     .container {
       display: flex;
@@ -62,13 +63,13 @@
     <svg width="545" height="773" viewBox="0 0 545 773" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#f8f4e3">
-            <animate attributeName="stop-color" values="#f8f4e3; #e6dec5; #f8f4e3" dur="6s" repeatCount="indefinite" />
-          </stop>
-          <stop offset="100%" stop-color="#e6dec5">
-            <animate attributeName="stop-color" values="#e6dec5; #f8f4e3; #e6dec5" dur="6s" repeatCount="indefinite" />
-          </stop>
-        </linearGradient>
+  <stop offset="0%" stop-color="#e0e0e0">
+    <animate attributeName="stop-color" values="#e0e0e0; #b3f0ff; #cc99ff; #e0e0e0" dur="4s" repeatCount="indefinite" />
+  </stop>
+  <stop offset="100%" stop-color="#cc99ff">
+    <animate attributeName="stop-color" values="#cc99ff; #e0e0e0; #b3f0ff; #cc99ff" dur="4s" repeatCount="indefinite" />
+  </stop>
+</linearGradient>
         <clipPath id="clip0_3115_3">
           <rect width="544.16" height="772.02" fill="white"/>
         </clipPath>
