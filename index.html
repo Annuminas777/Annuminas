@@ -4,64 +4,58 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Annuminas</title>
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #1a1a1a;
-      overflow: hidden;
-    }
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #0a0a0a;
+    overflow: hidden;
+  }
 
-    .background-animation {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 200%;
-      height: 200%;
-      z-index: -1;
-      filter: blur(20px);
-      opacity: 1;
-      pointer-events: none;
-      transform: translate(-25%, -25%);
-      animation: ambientFlow 8s ease-in-out infinite;
-      background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
-    }
+  .background-zoom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200vw;
+    height: 200vh;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(circle at center, #2a2a2a, #0a0a0a 80%);
+    animation: zoomLoop 10s ease-in-out infinite;
+    transform-origin: center;
+    filter: blur(30px);
+    opacity: 1;
+  }
 
-    @keyframes ambientFlow {
-      0% {
-        background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
-      }
-      25% {
-        background: radial-gradient(circle at 60% 30%, #2c2c2c, #000000);
-      }
-      50% {
-        background: radial-gradient(circle at 50% 70%, #3a3a3a, #0a0a0a);
-      }
-      75% {
-        background: radial-gradient(circle at 80% 40%, #1a1a1a, #202020);
-      }
-      100% {
-        background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
-      }
+  @keyframes zoomLoop {
+    0% {
+      transform: scale(1);
     }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
 
-    svg {
-      width: 240px;
-      height: auto;
-    }
-  </style>
+  svg {
+    width: 240px;
+    height: auto;
+  }
+</style>
 </head>
 
 <body>
-  <div class="background-animation"></div>
+  <div class="background-zoom"></div>
   <div class="container">
     <svg width="545" height="773" viewBox="0 0 545 773" xmlns="http://www.w3.org/2000/svg">
       <defs>
