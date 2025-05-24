@@ -12,38 +12,39 @@
       background-color: #1a1a1a;
       overflow: hidden;
     }
- 
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
-  animation: ambientFlow 20s ease-in-out infinite;
-  z-index: -1;
-  transform: translate(-25%, -25%);
-  filter: blur(20px);
-}
 
-@keyframes ambientFlow {
-  0% {
-    background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
-  }
-  25% {
-    background: radial-gradient(circle at 60% 30%, #2c2c2c, #000000);
-  }
-  50% {
-    background: radial-gradient(circle at 50% 70%, #3a3a3a, #0a0a0a);
-  }
-  75% {
-    background: radial-gradient(circle at 80% 40%, #1a1a1a, #202020);
-  }
-  100% {
-    background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
-  }
-}
+    .background-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 200%;
+      height: 200%;
+      z-index: -1;
+      filter: blur(20px);
+      opacity: 1;
+      pointer-events: none;
+      transform: translate(-25%, -25%);
+      animation: ambientFlow 8s ease-in-out infinite;
+      background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
+    }
+
+    @keyframes ambientFlow {
+      0% {
+        background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
+      }
+      25% {
+        background: radial-gradient(circle at 60% 30%, #2c2c2c, #000000);
+      }
+      50% {
+        background: radial-gradient(circle at 50% 70%, #3a3a3a, #0a0a0a);
+      }
+      75% {
+        background: radial-gradient(circle at 80% 40%, #1a1a1a, #202020);
+      }
+      100% {
+        background: radial-gradient(circle at 40% 40%, #1a1a1a, #0a0a0a);
+      }
+    }
 
     .container {
       display: flex;
@@ -58,7 +59,9 @@ body::before {
     }
   </style>
 </head>
+
 <body>
+  <div class="background-animation"></div>
   <div class="container">
     <svg width="545" height="773" viewBox="0 0 545 773" xmlns="http://www.w3.org/2000/svg">
       <defs>
