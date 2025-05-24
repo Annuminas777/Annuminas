@@ -21,10 +21,16 @@
       height: 200vh;
       z-index: 1;
       pointer-events: none;
-      background: radial-gradient(circle at center, #b3f0ff, #0a0a0a 80%);
+background: radial-gradient(
+  circle at center,
+  #2a2a2a 0%,
+  #1a1a1a 30%,
+  #141414 60%,
+  #0a0a0a 100%
+);
       animation: zoomLoop 10s ease-in-out infinite;
       transform-origin: center;
-      filter: blur(30px);
+      filter: blur(50px);
       opacity: 1;
     }
 
@@ -40,14 +46,14 @@
       }
     }
 
-    .container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      z-index: 1;
-      position: relative;
-    }
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  position: relative;
+  z-index: 10; /* higher than background */
+}
 
     svg {
       width: 200px;
