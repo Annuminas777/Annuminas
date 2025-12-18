@@ -1,102 +1,403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!--nothing to see here-->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Annuminas</title>
-  <link href="https://fonts.googleapis.com/css2?family=Asul:wght@400;700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      background-color: #0a0a0a;
-      overflow: hidden;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Annuminas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .background-zoom {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 200vw;
-      height: 200vh;
-      z-index: 1;
-      pointer-events: none;
-background: radial-gradient(
-  circle at center,
-  #2a2a2a 0%,
-  #1a1a1a 30%,
-  #141414 60%,
-  #0a0a0a 100%
-);
-      animation: zoomLoop 15s ease-in-out infinite;
-      transform-origin: center;
-      filter: blur(150px);
-      opacity: 1;
-    }
+        html, body {
+            height: 100%;
+            overflow: hidden;
+        }
 
-    @keyframes zoomLoop {
-      0% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.5);
-      }
-      100% {
-        transform: scale(1);
-      }
-    }
+        body {
+            background-color: #f2f2f2;
+            font-family: 'Courier New', Courier, monospace;
+            color: #2B2D2F;
+            font-size: 11px;
+            line-height: 1.6;
+        }
 
-.container {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  position: relative;
-  z-index: 10;
-  text-align: center;
-}
+        .page {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            padding: 40px;
+            max-width: 860px;
+        }
 
-    svg {
-      width: 200px;
-      height: auto;
-    }
-    
-  </style>
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 40px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid #d0d0d0;
+        }
+
+        .logo svg {
+            width: 70px;
+            height: auto;
+            display: block;
+        }
+
+        .header-right {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            padding-top: 2px;
+        }
+
+        .ip-display {
+            font-size: 22px;
+            letter-spacing: 1px;
+            font-weight: normal;
+        }
+
+        .ip-label {
+            font-size: 9px;
+            color: #909090;
+            letter-spacing: 0.5px;
+        }
+
+        .main {
+            flex: 1;
+            display: flex;
+            padding-top: 30px;
+            gap: 80px;
+        }
+
+        .column-left {
+            display: flex;
+            flex-direction: column;
+            gap: 28px;
+            min-width: 160px;
+        }
+
+        .column-right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            max-width: 380px;
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        .label {
+            font-size: 9px;
+            color: #909090;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .value {
+            font-size: 11px;
+        }
+
+        .value.counter {
+            font-size: 28px;
+            letter-spacing: 2px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .status-row {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .status-indicator {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background-color: #2B2D2F;
+        }
+
+        .status-indicator.active {
+            background-color: #5a8a6a;
+        }
+
+        .log {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            font-size: 10px;
+        }
+
+        .log-entry {
+            display: flex;
+            gap: 12px;
+            color: #2B2D2F;
+        }
+
+        .log-entry .time {
+            color: #909090;
+            min-width: 70px;
+        }
+
+        .log-entry .code {
+            min-width: 50px;
+            color: #707070;
+        }
+
+        .footer {
+            padding-top: 25px;
+            margin-top: auto;
+            border-top: 1px solid #d0d0d0;
+            display: flex;
+            gap: 50px;
+            font-size: 9px;
+            color: #909090;
+        }
+
+        .footer-field {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+        }
+
+        .footer-value {
+            color: #2B2D2F;
+            font-size: 10px;
+        }
+    </style>
 </head>
-
 <body>
-  <div class="background-zoom"></div>
-  <div class="container">
-    <svg width="545" height="773" viewBox="0 0 545 773" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="animatedGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-  <stop offset="0%" stop-color="#e0e0e0">
-    <animate attributeName="stop-color" values="#e0e0e0; #b3f0ff; #cc99ff; #e0e0e0" dur="12s" repeatCount="indefinite" />
-  </stop>
-  <stop offset="100%" stop-color="#cc99ff">
-    <animate attributeName="stop-color" values="#cc99ff; #e0e0e0; #b3f0ff; #cc99ff" dur="12s" repeatCount="indefinite" />
-  </stop>
-</linearGradient>
-        <clipPath id="clip0_3115_3">
-          <rect width="544.16" height="772.02" fill="white"/>
-        </clipPath>
-      </defs>
-      <g clip-path="url(#clip0_3115_3)">
-        <path d="M305.85 374.2C309.39 373.14 319.64 375.72 322.17 378.48C324.7 381.24 323.99 383.84 324 387.5C324.04 401.51 324 415.5 323.12 429.48C321.58 437.78 304.73 432.42 303.36 426.29C302.06 420.46 303.03 406.28 303.11 399.46C303.14 396.83 303.08 393.84 303.11 391C303.15 386.76 302.5 376 305.85 374.2Z" fill="url(#animatedGradient)"/>
-        <path d="M415.13 0L434.16 83L499.2 44.48L503.14 45.02L462.14 112L544.15 129.51L542.73 132.12L461.14 151.02L501.32 214.35L500.62 217.01L433.15 176.01L416.13 271.01L413.85 267.8L396.13 178.01L329.64 218.98L328.63 216L369.13 149.5L287.14 133.5L290.91 130.27L369.15 112L327.16 46.02C328.89 45.88 330.46 45.87 332.12 46.55C337.91 48.95 349.07 57.49 355.49 61.18C368.95 68.94 382.69 76.27 396.15 84.01L412.16 0H415.14H415.13Z" fill="url(#animatedGradient)"/>
-        <path d="M368.15 446.5C367.12 449.81 351.15 446.45 349.07 443.58C348 442.1 348.25 441.14 348.09 439.56C347.04 428.96 347.19 407.19 348.11 396.46C348.39 393.14 348.45 390.18 352.59 390.18C356.04 390.18 368.15 393.28 368.15 397.51V446.51V446.5Z" fill="url(#animatedGradient)"/>
-        <path d="M118.36 754.79L117.65 752.54C118.48 694.21 118.21 635.77 118.18 577.46C118.15 486.85 117.14 394.88 117.15 304.49C117.15 296.36 117.37 292.41 124.82 288.18C131.62 284.31 168.81 270.81 170.65 267.01L171.1 214.46L172.59 210.95L249.6 180C253.84 180.71 256.16 187.7 256.19 191.47C256.03 368.14 258.35 544.93 256.11 721.47C255.99 730.87 256.78 740.01 257.01 749.37L118.37 754.79H118.36ZM220.15 306L200.58 308.93C199.43 316.75 199.22 324.59 199.08 332.52C198.99 337.44 199.15 342.5 199.12 347.46C199.06 355.64 199.24 363.84 199.17 372L220.16 366.5V306H220.15ZM151.15 325.5V382L168.05 378.9C168.68 358.82 168.89 339.02 168.15 319L151.16 325.5H151.15ZM220.15 403L200.37 406.7L199.09 408.46L200.16 471L220.16 466.5V403H220.15ZM168.15 413L151.15 416.5V479L168.15 474.5V413Z" fill="url(#animatedGradient)"/>
-        <path d="M378.41 510.26L435.1 487.41L437.01 488.65L437.2 753.55C434.87 758.32 438.82 771.07 432.6 772.02L377.3 761.37L378.42 510.26H378.41Z" fill="url(#animatedGradient)"/>
-        <path d="M471.45 628.7C470.37 627.94 469.29 624.98 469.11 623.54C467.47 610.4 469.11 595 469.11 580.46C469.11 573 469.11 564 472.14 561.48C475.7 559.34 485.12 563.97 485.94 568.71C485.56 584.31 488.08 599.93 487.19 615.54C487.03 618.33 486.1 629.02 484.75 630.09C482.51 631.86 473.5 630.14 471.45 628.7Z" fill="url(#animatedGradient)"/>
-        <path d="M55.8698 520.18C59.7498 519.05 62.2098 521.55 64.6698 523.99C69.5298 528.81 93.3398 557.77 94.0898 562.57C95.1998 585 95.1998 602.5 95.1998 626.46L95.1298 755.49C94.6998 758.12 92.0298 759.56 89.5998 759.96C80.0998 761.5 68.6398 760.93 58.7798 762.14C41.0098 764.31 23.4298 768.24 5.75982 770.99C2.66982 770.37 1.47982 769.78 1.09982 766.57C-0.740179 750.96 1.41982 728.97 1.19982 712.47C0.659821 671.86 -0.610179 630.71 0.369821 589.72C5.93982 580.06 14.2298 572.18 21.1398 563.49C25.5098 557.99 53.2198 520.96 55.8898 520.19L55.8698 520.18ZM44.3698 639.79C47.2898 641.87 57.2298 641.15 58.1198 636.48C59.6098 628.71 59.3998 615.41 58.0598 607.59C57.5498 604.62 54.8398 598.42 51.5798 597.96C48.6498 597.55 43.7098 600.68 43.1598 603.52C42.0998 608.9 42.6398 628.28 43.0998 634.54C43.1998 635.85 43.4098 639.1 44.3598 639.79H44.3698Z" fill="url(#animatedGradient)"/>
-      </g>
-    </svg>
+    <div class="page">
+        <div class="header">
+            <div class="logo">
+                <svg width="847" height="934" viewBox="0 0 847 934" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M453.085 353.365C458.31 351.777 473.44 355.642 477.174 359.776C480.909 363.911 479.861 367.806 479.875 373.289C479.934 393.964 480.271 418.322 479.04 439.064C479.008 439.592 478.576 440 478.048 440C469.999 439.996 453.272 439.886 449.547 437.087C449.342 436.933 449.244 436.697 449.239 436.44C449.078 427.231 448.924 401.277 449.041 391.205C449.085 387.265 448.996 382.786 449.041 378.532C449.1 372.18 448.14 356.061 453.085 353.365Z" fill="#2B2D2F"/>
+                    <path d="M707.296 1.36551C707.429 1.49891 707.522 1.66726 707.564 1.85112L727.599 90.2758L797.903 48.51C798.098 48.3943 798.326 48.3482 798.55 48.379L800.968 48.7114C801.682 48.8096 802.061 49.6078 801.686 50.223L757.973 121.854L845.693 140.641C846.346 140.781 846.681 141.508 846.363 142.095L845.673 143.367C845.537 143.619 845.299 143.8 845.02 143.864L756.888 164.343L800.273 232.935C800.421 233.17 800.465 233.455 800.395 233.724L800.086 234.9C799.916 235.548 799.17 235.849 798.599 235.5L726.503 191.554L708.447 292.648C708.29 293.522 707.159 293.775 706.646 293.05L705.675 291.679C705.594 291.564 705.537 291.433 705.51 291.295L686.315 193.732L615.207 237.683C614.659 238.021 613.94 237.762 613.734 237.152L613.189 235.541C613.094 235.261 613.128 234.954 613.282 234.702L657.005 162.688L570.023 145.661C569.204 145.501 568.93 144.466 569.564 143.922L571.907 141.908C572.029 141.803 572.174 141.729 572.331 141.692L657.027 121.854L612.331 51.4068C611.928 50.7714 612.345 49.9309 613.098 49.9258C614.356 49.9172 615.568 50.0675 616.829 50.5854C623.114 53.1988 635.229 62.498 642.198 66.516C656.81 74.9659 671.725 82.9475 686.337 91.3756L702.781 1.65909C702.792 1.59962 702.797 1.5398 702.807 1.48018C702.861 1.16539 703.211 0.122198 705.516 0.00983461C705.781 -0.00309275 706.038 0.105557 706.226 0.293407L707.296 1.36551Z" fill="#2B2D2F"/>
+                    <path d="M544.446 454.654C543.21 455.691 518.243 454.184 516.807 452.941C515.371 451.698 515.379 449.127 515.371 447C515.363 444.874 514.521 393.694 515.4 383.313C516.279 372.933 516.404 374.034 521.965 374.034C527.525 374.034 543.535 377.664 544.763 384.865C545.992 392.066 546 445.266 546 445.266C546 445.266 545.683 453.618 544.446 454.654Z" fill="#2B2D2F"/>
+                    <path d="M177.738 917C177.185 917 176.738 916.552 176.738 916V913.665C177.962 827.206 177.564 740.583 177.52 654.153C177.475 519.846 175.985 383.523 176 249.542C176 237.491 176.325 231.637 187.315 225.367C197.347 219.63 254.076 199.252 254.925 193.987C255.775 188.723 255.589 116.095 255.589 116.095C255.589 116.095 255.775 113.384 257.787 110.892C259.8 108.401 381.117 54.8352 381.117 61.5883C381.117 68.3414 381.072 76.4299 381.117 82.018C380.881 343.887 385.019 605.407 381.715 867.084C381.545 880.402 381.504 893.766 381.064 907.146C381.029 908.192 380.192 909.032 379.147 909.073L179.128 917H177.738ZM327.949 251.78L299.079 256.123C297.382 267.715 297.073 279.335 296.866 291.09C296.733 298.382 296.969 305.882 296.925 313.234C296.837 325.359 297.102 337.514 296.999 349.609L327.964 341.457V251.78H327.949ZM226.158 280.684V364.431L251.09 359.837C252.019 330.073 252.329 300.724 251.237 271.05L226.173 280.684H226.158ZM327.949 395.559L298.769 401.043L296.881 403.652L298.459 496.352L327.964 489.682V395.559H327.949ZM251.237 410.381L226.158 415.569V508.21L251.237 501.54V410.381Z" fill="#2B2D2F"/>
+                    <path d="M559.986 539.885C559.995 539.247 560.307 538.651 560.831 538.286C566.036 534.655 594.394 515.208 608.667 512.362C624.422 509.221 640 505.869 646 507.369C652 508.869 647 899.665 647 899.665C647 917.613 646.618 922.512 643.554 924.537C642.463 925.258 641.077 925.256 639.789 925.039L559.676 911.545C558.71 911.382 558.004 910.543 558.009 909.562L559.829 551.621L559.986 539.885Z" fill="#2B2D2F"/>
+                    <path d="M697.643 730.843C696.009 729.723 694.375 725.361 694.103 723.239C691.622 703.877 694.103 681.185 694.103 659.759C694.103 648.767 694.103 635.505 698.687 631.792C704.072 628.638 718.324 635.461 719.564 642.445C721.455 661.054 722.802 688.449 721.455 711.451C721.213 715.562 719.806 731.314 717.764 732.891C714.375 735.499 700.744 732.965 697.643 730.843Z" fill="#2B2D2F"/>
+                    <path d="M86.3678 565.649C89.509 567.216 92.1339 568.091 95.7777 571.703C102.977 578.837 136.626 622.072 139.356 628.806C139.767 633.044 141 687.907 141 723.371L140.896 914.352C140.259 918.245 136.304 920.376 132.705 920.968C118.633 923.248 93.12 925.94 78.515 927.731C52.1933 930.943 50.2446 930.865 6.2685 934C3.12735 934 1.6226 933.645 1.61535 930.752C1.55677 907.356 2.08935 875.099 1.76348 850.677C0.96641 790.779 -0.904409 730.088 0.518931 669.628C0.528689 669.214 0.667857 668.812 0.91616 668.48C11.2263 654.694 21.1889 642.873 31.2994 630.168C37.7724 622.027 78.515 568.784 80.0855 567.217C81.6561 565.649 83.2267 564.082 86.3678 565.649ZM65.7086 743.101C69.9897 746.149 84.4972 747.463 89.3617 739.89C89.4598 739.737 89.509 739.55 89.509 739.368C89.5092 708.299 89.5456 707.032 87.9384 694.201C86.7605 684.797 86.9239 680.57 76.9444 680.095C70.6621 680.095 63.2727 680.177 62.8092 689.499C62.2785 700.172 63.146 726.065 63.8274 735.331C63.9755 737.27 64.2866 742.08 65.6938 743.101H65.7086Z" fill="#2B2D2F"/>
+                </svg>
+            </div>
+            <div class="header-right">
+                <div class="ip-label">SESSION ORIGIN</div>
+                <div class="ip-display" id="ip">...</div>
+            </div>
+        </div>
 
-<div style="animation: fadeIn 2s ease-out; padding: 40px 16px 40px; box-sizing: border-box; max-width: 600px; text-align: center; font-family: 'Asul', sans-serif; color: #ccc;">
+        <div class="main">
+            <div class="column-left">
+                <div class="field">
+                    <div class="label">Sequence</div>
+                    <div class="value counter" id="counter">0000000</div>
+                </div>
 
-  </div>
+                <div class="field">
+                    <div class="label">Status</div>
+                    <div class="status-row">
+                        <div class="status-indicator active"></div>
+                        <span class="value">Nominal</span>
+                    </div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Uptime</div>
+                    <div class="value" id="uptime">0d 00:00:00</div>
+                </div>
+
+                <div class="field">
+                    <div class="label">Last Sync</div>
+                    <div class="value" id="lastsync">--</div>
+                </div>
+            </div>
+
+            <div class="column-right">
+                <div class="field">
+                    <div class="label">Log</div>
+                    <div class="log" id="log"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <div class="footer-field">
+                <div class="label">Instance</div>
+                <div class="footer-value" id="instance">--</div>
+            </div>
+            <div class="footer-field">
+                <div class="label">UTC</div>
+                <div class="footer-value" id="utc">--</div>
+            </div>
+            <div class="footer-field">
+                <div class="label">Checksum</div>
+                <div class="footer-value" id="checksum">--</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Counter - starts from a pseudo-random point based on current time
+        const baseTime = new Date('2024-01-01').getTime();
+        const now = Date.now();
+        let counter = Math.floor((now - baseTime) / 1000);
+
+        // Uptime - random start point
+        const uptimeStart = Date.now() - (Math.floor(Math.random() * 86400000 * 120) + 86400000 * 30);
+
+        // Log entries - cryptic but functional looking
+        const logPrefixes = ['SYN', 'ACK', 'VRF', 'CHK', 'IDX', 'MAP', 'REF', 'NUL', 'SET', 'GET'];
+        const logMessages = [
+            'heartbeat received',
+            'index rebuilt',
+            'connection maintained',
+            'state preserved',
+            'checkpoint written',
+            'buffer cleared',
+            'reference updated',
+            'alignment verified',
+            'sequence continued',
+            'integrity confirmed',
+            'handshake complete',
+            'sync acknowledged',
+            'threshold nominal',
+            'cycle completed',
+            'beacon active'
+        ];
+
+        let logEntries = [];
+
+        function generateInstanceId() {
+            const chars = 'ABCDEF0123456789';
+            let id = '';
+            for (let i = 0; i < 8; i++) {
+                id += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return id.slice(0, 4) + '-' + id.slice(4);
+        }
+
+        function generateChecksum() {
+            const chars = 'abcdef0123456789';
+            let hash = '';
+            for (let i = 0; i < 16; i++) {
+                hash += chars[Math.floor(Math.random() * chars.length)];
+            }
+            return hash;
+        }
+
+        function formatUptime(ms) {
+            const seconds = Math.floor(ms / 1000);
+            const days = Math.floor(seconds / 86400);
+            const hours = Math.floor((seconds % 86400) / 3600);
+            const mins = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            return `${days}d ${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        function formatTime(date) {
+            return date.toTimeString().slice(0, 8);
+        }
+
+        function formatUTC(date) {
+            return date.toISOString().replace('T', ' ').slice(0, 19);
+        }
+
+        function addLogEntry() {
+            const now = new Date();
+            const prefix = logPrefixes[Math.floor(Math.random() * logPrefixes.length)];
+            const msg = logMessages[Math.floor(Math.random() * logMessages.length)];
+            
+            logEntries.unshift({
+                time: formatTime(now),
+                code: prefix,
+                msg: msg
+            });
+
+            if (logEntries.length > 6) {
+                logEntries.pop();
+            }
+
+            renderLog();
+        }
+
+        function renderLog() {
+            const logEl = document.getElementById('log');
+            logEl.innerHTML = logEntries.map(entry => 
+                `<div class="log-entry"><span class="time">${entry.time}</span><span class="code">${entry.code}</span><span class="msg">${entry.msg}</span></div>`
+            ).join('');
+        }
+
+        function updateCounter() {
+            counter++;
+            document.getElementById('counter').textContent = String(counter).padStart(7, '0');
+        }
+
+        function updateUptime() {
+            const elapsed = Date.now() - uptimeStart;
+            document.getElementById('uptime').textContent = formatUptime(elapsed);
+        }
+
+        function updateUTC() {
+            document.getElementById('utc').textContent = formatUTC(new Date());
+        }
+
+        function updateLastSync() {
+            const now = new Date();
+            document.getElementById('lastsync').textContent = formatTime(now);
+        }
+
+        // Fetch real IP
+        async function fetchIP() {
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                document.getElementById('ip').textContent = data.ip;
+            } catch (e) {
+                // Fallback to a generated placeholder
+                document.getElementById('ip').textContent = '0.0.0.0';
+            }
+        }
+
+        // Initialize
+        document.getElementById('instance').textContent = generateInstanceId();
+        document.getElementById('checksum').textContent = generateChecksum();
+        
+        fetchIP();
+        updateUTC();
+        updateUptime();
+        updateLastSync();
+
+        // Add initial log entries
+        for (let i = 0; i < 4; i++) {
+            setTimeout(() => addLogEntry(), i * 100);
+        }
+
+        // Update loops
+        setInterval(updateCounter, 1000);
+        setInterval(updateUptime, 1000);
+        setInterval(updateUTC, 1000);
+
+        // Periodic log entries
+        function scheduleNextLog() {
+            const delay = 8000 + Math.random() * 25000;
+            setTimeout(() => {
+                addLogEntry();
+                updateLastSync();
+                scheduleNextLog();
+            }, delay);
+        }
+        scheduleNextLog();
+
+        // Occasional checksum update
+        setInterval(() => {
+            document.getElementById('checksum').textContent = generateChecksum();
+        }, 60000);
+    </script>
 </body>
 </html>
